@@ -1,0 +1,76 @@
+--- Job MODEL.gms Start 08/25/25 18:21:39 49.6.1 55d34574 LEX-LEG x86 64bit/Linux
+--- Applying:
+--- GAMS Parameters defined
+    Restart /var/lib/condor/execute/dir_464189/gamsexec/restart.g00
+    Input /var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms
+    Output /var/lib/condor/execute/dir_464189/gamsexec/solve.lst
+    PageWidth 79
+    PageSize 0
+    ScrDir /var/lib/condor/execute/dir_464189/neos-464191/
+    SysDir /opt/gams/49.6.1/
+    CurDir /var/lib/condor/execute/dir_464189/gamsexec/
+    LogOption 4
+    LogFile /var/lib/condor/execute/dir_464189/gamsexec/solve.log
+    AppendOut 1
+    AppendLog 0
+    Suppress 0
+    CErr 10
+    ErrMsg 1
+    ErrorLog 99
+    LimRow 0
+    LimCol 0
+    IDE 1
+    GDX /var/lib/condor/execute/dir_464189/gamsexec/out.gdx
+    ExecMode 3
+    gdxCompress 1
+    Solver cbc
+    LstTitleLeftAligned 1
+Licensee: NEOS Server License prod-exec-6.neos-server.orgS241211/0001AB-GEN
+          mac@d0:94:66:89:89:0f                                     DCE1890
+          /opt/gams/49.6.1/gamslice.txt
+          Evaluation license: Not for commercial or production use
+          The expiration date of time-limited license is Dec 06, 2025
+System information: 36 physical cores and 503 Gb memory detected
+GAMS 49.6.1   Copyright (C) 1987-2025 GAMS Development. All rights reserved
+--- Starting continued compilation
+--- Workfile was generated under GAMS version WEX490-490
+--- MODEL.gms(4) 3 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",4,0]
+--- Starting execution: elapsed 0:00:00.002[LST:5]
+--- MODEL.gms(67) 4 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",67,0]
+--- Generating MINLP model QCSP[LST:5]
+--- MODEL.gms(124) 18 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",124,0]
+---   5,116 rows  2,400 columns  150,100 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+---   2,373 discrete-columns
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+14] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 2.000E+14]
+--- MODEL.gms(124) 16 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",124,0]
+--- Executing DICOPT (Solvelink=2): elapsed 0:00:00.101[LST:19]
+-------------------------------------------------------------------------------
+Dicopt 2         49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+-------------------------------------------------------------------------------
+--- DICOPT: No non-linearities found: executing the MIP solver
+
+      The model is linear (possibly with integer variables).
+      We will call the MIP solver to solve it for you.
+
+      Advice: use a MIP solver to solve this problem.
+
+COIN-OR CBC      49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.11)
+written by J. Forrest
+
+Parallel mode: none, using 72 threads in linear algebra
+
+Calling CBC main solution routine...
+
+Model infeasible.
+Best possible:  -1.476267e+03
+--- Reading solution for model QCSP[LST:31]
+--- Executing after solve: elapsed 0:00:00.208[LST:72]
+--- GDX File /var/lib/condor/execute/dir_464189/gamsexec/out.gdx[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/out.gdx",0,0]
+*** Status: Normal completion[LST:89]
+--- Job MODEL.gms Stop 08/25/25 18:21:40 elapsed 0:00:00.209

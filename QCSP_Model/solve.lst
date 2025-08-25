@@ -1,0 +1,88 @@
+
+
+COMPILATION TIME     =        0.001 SECONDS      3 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 16:10:30 Page 1
+A Model for scheduling QCs
+Range Statistics    SOLVE QCSP Using MINLP From line 124
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 1.000E+00, 1.000E+14] - Zero values observed as well
+Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E+00, 2.000E+14]
+
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 16:10:30 Page 2
+A Model for scheduling QCs
+Model Statistics    SOLVE QCSP Using MINLP From line 124
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          13     SINGLE EQUATIONS        5,116
+BLOCKS OF VARIABLES           7     SINGLE VARIABLES        2,400
+NON ZERO ELEMENTS       193,360     NON LINEAR N-Z              0
+CODE LENGTH                   0     CONSTANT POOL              16     
+DISCRETE VARIABLES      2,373
+
+
+GENERATION TIME      =        0.133 SECONDS     19 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 16:10:30 Page 3
+A Model for scheduling QCs
+Solution Report     SOLVE QCSP Using MINLP From line 124
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   QCSP                OBJECTIVE  objFunc
+     TYPE    MINLP               DIRECTION  MINIMIZE
+     SOLVER  DICOPT              FROM LINE  124
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      19 Infeasible - No Solution
+**** OBJECTIVE VALUE               NA
+
+ RESOURCE USAGE, LIMIT          0.041 10000000000.000
+ ITERATION COUNT, LIMIT         0    2147483647
+ EVALUATION ERRORS             NA             0
+-------------------------------------------------------------------------------
+Dicopt 2         49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+-------------------------------------------------------------------------------
+--- DICOPT: No non-linearities found: executing the MIP solver
+
+      The model is linear (possibly with integer variables).
+      We will call the MIP solver to solve it for you.
+
+      Advice: use a MIP solver to solve this problem.
+
+COIN-OR CBC      49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.11)
+written by J. Forrest
+
+Parallel mode: none, using 72 threads in linear algebra
+
+Calling CBC main solution routine...
+
+Model infeasible.
+Best possible:  -1.345846e+01
+
+No solution returned
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 16:10:30 Page 4
+A Model for scheduling QCs
+E x e c u t i o n
+
+
+EXECUTION TIME       =        0.264 SECONDS     19 MB  49.6.1 55d34574 LEX-LEG
+
+
+USER: NEOS Server License prod-exec-6.neos-server.orgS241211/0001AB-GEN
+      mac@d0:94:66:89:89:0f                                     DCE1890
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Restart    /var/lib/condor/execute/dir_433415/gamsexec/restart.g00
+Input      /var/lib/condor/execute/dir_433415/gamsexec/MODEL.gms
+Output     /var/lib/condor/execute/dir_433415/gamsexec/solve.lst

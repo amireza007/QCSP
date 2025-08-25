@@ -1,0 +1,130 @@
+
+--- Job QCSP_Model.gms Start 08/26/25 02:51:37 50.4.0 c55df396 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\50\gmsprmNT.txt
+    C:\Users\taghi\OneDrive\Documents\GAMS\gamsconfig.yaml
+--- GAMS Parameters defined
+    MIP CBC
+    MINLP GUROBI
+    Input C:\Users\taghi\Projects\QCSP\QCSP_Model.gms
+    XSave C:\Users\taghi\Projects\QCSP\QCSP_Model.g0?
+    PageSize 0
+    Action C
+    ScrDir C:\Users\taghi\Projects\QCSP\225a\
+    SysDir C:\GAMS\50\
+    LogOption 3
+    AppendLog 1
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    PreviousWork 1
+Licensee: GAMS Demo, for EULA and demo limitations see   G250531/0001CB-GEN
+          https://www.gams.com/latest/docs/UG%5FLicense.html         DC0000
+          C:\GAMS\50\gamslice.txt
+          Demo license for demonstration and instructional purposes only
+System information: 8 physical cores and 16 Gb physical memory detected
+GAMS 50.4.0   Copyright (C) 1987-2025 GAMS Development. All rights reserved
+--- Starting compilation
+--- QCSP_Model.gms(131) 3 Mb
+*** Status: Normal completion
+--- Job QCSP_Model.gms Stop 08/26/25 02:51:37 elapsed 0:00:00.008
+
+--- switch to NEOS .\QCSP_Model\solve.lst
+Job 17345857 dispatched
+password: vycMFILU
+Executed on prod-exec-6.neos-server.org
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 1
+A Model for scheduling QCs
+Range Statistics    SOLVE QCSP Using MINLP From line 124
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 1.000E+00, 1.000E+14] - Zero values observed as well
+Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E+00, 2.000E+14]
+
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 2
+A Model for scheduling QCs
+Model Statistics    SOLVE QCSP Using MINLP From line 124
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          13     SINGLE EQUATIONS        5,116
+BLOCKS OF VARIABLES           7     SINGLE VARIABLES        2,400
+NON ZERO ELEMENTS       150,100     NON LINEAR N-Z              0
+CODE LENGTH                   0     CONSTANT POOL              16     
+DISCRETE VARIABLES      2,373
+
+
+GENERATION TIME      =        0.099 SECONDS     16 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 3
+A Model for scheduling QCs
+Solution Report     SOLVE QCSP Using MINLP From line 124
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   QCSP                OBJECTIVE  objFunc
+     TYPE    MINLP               DIRECTION  MINIMIZE
+     SOLVER  DICOPT              FROM LINE  124
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      19 Infeasible - No Solution
+**** OBJECTIVE VALUE               NA
+
+ RESOURCE USAGE, LIMIT          0.037 10000000000.000
+ ITERATION COUNT, LIMIT         0    2147483647
+ EVALUATION ERRORS             NA             0
+-------------------------------------------------------------------------------
+Dicopt 2         49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+-------------------------------------------------------------------------------
+--- DICOPT: No non-linearities found: executing the MIP solver
+
+      The model is linear (possibly with integer variables).
+      We will call the MIP solver to solve it for you.
+
+      Advice: use a MIP solver to solve this problem.
+
+COIN-OR CBC      49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
+
+COIN-OR Branch and Cut (CBC Library 2.10.11)
+written by J. Forrest
+
+Parallel mode: none, using 72 threads in linear algebra
+
+Calling CBC main solution routine...
+
+Model infeasible.
+Best possible:  -1.476267e+03
+
+No solution returned
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 4
+A Model for scheduling QCs
+E x e c u t i o n
+
+
+EXECUTION TIME       =        0.206 SECONDS     16 MB  49.6.1 55d34574 LEX-LEG
+
+
+USER: NEOS Server License prod-exec-6.neos-server.orgS241211/0001AB-GEN
+      mac@d0:94:66:89:89:0f                                     DCE1890
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Restart    C:/Users/taghi/Projects/QCSP\QCSP_Model\restart.g00
+Input      C:/Users/taghi/Projects/QCSP\QCSP_Model.gms
+Output     C:/Users/taghi/Projects/QCSP\QCSP_Model\solve.lst
+Archive:  solver-output.zip
+--- extracting: .\QCSP_Model\solve.log
+--- skipping: .\QCSP_Model\solve.lxi
+error:  cannot delete old solve.lst
+        Permission denied
+--- extracting: .\QCSP_Model\out.gdx
