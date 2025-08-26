@@ -8,10 +8,11 @@ scalars
 ;
 
 Sets
-    i "index of tasks" /0*20/
+    i "index of tasks" /0*16/
     dummy "final position index" /'0',T/
     k "index of QCs" /1*4/
     
+    Omega(i,i) "set of all ACCEPTABLE tasks"  
     psi(i,i) "set of pairs (i,j) that can't performed simultaneously" / 1.(2*15),
                                                                         2.(3*15),
                                                                         3.(4*15)
@@ -30,8 +31,10 @@ Sets
     YS(*) "set of QC locations" /1*20/
 
 ;
-
 alias(i,j);
+omega(i,j) $(i.val < j.val) = YES;
+omega('0','16') =NO;
+display omega;
 alias(v,k);
 alias(u,i);
 
@@ -60,7 +63,7 @@ Parameters
     t_d(dummy,i,k)
 ;
 
-t(i,j) = abs(l(i)-l(j));
+t(i,j) $(i.val < j.val and j.val <> 16) = l(j)-l(i);
 p(i) = uniform(60,90);
 r(k) = 0;
 t_d('T',i,k) =abs(l(i) - lt(k));
@@ -82,7 +85,7 @@ variable objFunc;
 Equations
     obj, c1(k), c2(k)
     ,c3(k)
-    ,c4(j)
+*    ,c4(j)
     ,c5(i,k)
     ,c6(i,j,k)
     ,c7(i,j)
@@ -92,32 +95,32 @@ Equations
     ,c11(j,k)
     ,c12(j,k)
 ;
-
+*$(i.val<j.val and ( (i.val=0 and 0<j.val and j.val<16) or (0<i.val and i.val<16 and 0<j.val and j.val <16) or (0<i.val and i.val<16 and j.val = 16) ))
 obj.. objFunc =e= a1*W + a2*sum(k,Y(k));
 
 c1(k).. Y(k) =l= W;
 
-c2(k).. sum(j,x_d('0',j,k)) =e=1;
+c2(k).. sum(j $(0<j.val and j.val<16),x('0',j,k)) =e=1;
 
-c3(k).. sum(i,x_d('T',i,k)) =e= 1;
+c3(k).. sum(i $(0<i.val and i.val<16),x(i ,'16',k)) =e= 1;
+*dirty way!
+*c4(j).. sum((i,k) $(omega(i,j)), x(i,j,k))  =e= 1;
 
-c4(j).. sum((k,i)$(j.val <> i.val), x(i,j,k))  =e= 1;
+c5(i,k).. sum(j $(omega(i,j)) ,x(i,j,k)) - sum(j $(omega(j,i)),x(j,i,k)) =e= 0;
 
-c5(i,k).. sum(j $(j.val <> i.val),x(i,j,k)) - sum(j$(j.val <> i.val),x(j,i,k)) =e= 0;
+c6(i,j,k).. D(i) + t(i,j) + p(j) - D(j) $(j.val > i.val) =l= M*(1- x(i,j,k));
 
-c6(i,j,k).. D(i) + t(i,j) + p(j) - D(j) $(j.val <> i.val) =l= M*(1- x(i,j,k));
+c7(i,j)..D(i) + p(j) $(phi(i,j) and (j.val > i.val))  =l= D(j);
 
-c7(i,j)..D(i) + p(j) $(phi(i,j) and (j.val <> i.val))  =l= D(j);
+c8(i,j).. D(i) - D(j) + p(j)$(omega(i,j))  =l= M*(1 - z(i,j));!!special cases overlooked!
 
-c8(i,j).. D(i) - D(j) + p(j)$(j.val <> i.val)  =l= M*(1 - z(i,j));
+c9(i,j).. Z(i,j) + z(j,i) $(psi(i,j)and (j.val > i.val)) =e= 1;
 
-c9(i,j).. Z(i,j) + z(j,i) $(psi(i,j)and (j.val <> i.val)) =e= 1;
+c10(i,j,k).. sum((v,u)$(v.val <= k.val and omega(u,j)), x(u,j,v)) -sum((v,u)$(v.val <= k.val and omega(u,i)), x(u,i,v)) $(omega(i,j) and l(i)<l(j))  =l= M*(z(i,j) + z(j,i));
 
-c10(i,j,k).. sum((v,u)$(v.val <= k.val), x(u,j,v)) -sum((v,u)$(v.val <= k.val), x(u,i,v)) $(j.val <> i.val and l(i)<l(j))  =l= M*(z(i,j) + z(j,i));
+c11(j,k).. D(j) + t_d('T',j,k) - Y(k) $(omega(j,'16')) =l= M*(1 - x(j,'16',k));
 
-c11(j,k).. D(j) + t_d('T',j,k) - Y(k) =l= M*(1 - x_d('T',j,k));
-
-c12(j,k).. r(k) - d(j) + t_d('0',j,k) + p(j) =l= M*(1 - x_d('0',j,k));
+c12(j,k).. r(k) - d(j) + t_d('0',j,k) + p(j) $(omega('0',j)) =l= M*(1 - x('0',j,k));
 
 
 Model QCSP /all/;

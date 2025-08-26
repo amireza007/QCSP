@@ -1,5 +1,5 @@
 
---- Job QCSP_Model.gms Start 08/26/25 02:51:37 50.4.0 c55df396 WEX-WEI x86 64bit/MS Windows
+--- Job QCSP_Model.gms Start 08/26/25 17:51:53 50.4.0 c55df396 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\50\gmsprmNT.txt
     C:\Users\taghi\OneDrive\Documents\GAMS\gamsconfig.yaml
@@ -26,20 +26,70 @@ Licensee: GAMS Demo, for EULA and demo limitations see   G250531/0001CB-GEN
 System information: 8 physical cores and 16 Gb physical memory detected
 GAMS 50.4.0   Copyright (C) 1987-2025 GAMS Development. All rights reserved
 --- Starting compilation
---- QCSP_Model.gms(131) 3 Mb
+--- QCSP_Model.gms(134) 3 Mb
 *** Status: Normal completion
---- Job QCSP_Model.gms Stop 08/26/25 02:51:37 elapsed 0:00:00.008
+--- Job QCSP_Model.gms Stop 08/26/25 17:51:53 elapsed 0:00:00.010
 
 --- switch to NEOS .\QCSP_Model\solve.lst
-Job 17345857 dispatched
-password: vycMFILU
+Job 17348663 dispatched
+password: QMrWqNHn
 Executed on prod-exec-6.neos-server.org
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  49.6.1 55d34574 LEX-LEG
-GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 1
+COMPILATION TIME     =        0.001 SECONDS      3 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/26/25 09:22:14 Page 1
 A Model for scheduling QCs
-Range Statistics    SOLVE QCSP Using MINLP From line 124
+E x e c u t i o n
+
+
+----     37 SET Omega  set of all ACCEPTABLE tasks
+
+             1           2           3           4           5           6
+
+0          YES         YES         YES         YES         YES         YES
+1                      YES         YES         YES         YES         YES
+2                                  YES         YES         YES         YES
+3                                              YES         YES         YES
+4                                                          YES         YES
+5                                                                      YES
+
+ +           7           8           9          10          11          12
+
+0          YES         YES         YES         YES         YES         YES
+1          YES         YES         YES         YES         YES         YES
+2          YES         YES         YES         YES         YES         YES
+3          YES         YES         YES         YES         YES         YES
+4          YES         YES         YES         YES         YES         YES
+5          YES         YES         YES         YES         YES         YES
+6          YES         YES         YES         YES         YES         YES
+7                      YES         YES         YES         YES         YES
+8                                  YES         YES         YES         YES
+9                                              YES         YES         YES
+10                                                         YES         YES
+11                                                                     YES
+
+ +          13          14          15          16
+
+0          YES         YES         YES
+1          YES         YES         YES         YES
+2          YES         YES         YES         YES
+3          YES         YES         YES         YES
+4          YES         YES         YES         YES
+5          YES         YES         YES         YES
+6          YES         YES         YES         YES
+7          YES         YES         YES         YES
+8          YES         YES         YES         YES
+9          YES         YES         YES         YES
+10         YES         YES         YES         YES
+11         YES         YES         YES         YES
+12         YES         YES         YES         YES
+13                     YES         YES         YES
+14                                 YES         YES
+15                                             YES
+
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/26/25 09:22:14 Page 2
+A Model for scheduling QCs
+Range Statistics    SOLVE QCSP Using MINLP From line 127
 
 
 RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
@@ -48,37 +98,37 @@ RHS       [min, max] : [ 1.000E+00, 1.000E+14] - Zero values observed as well
 Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
 Matrix    [min, max] : [ 1.000E+00, 2.000E+14]
 
-GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 2
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/26/25 09:22:14 Page 3
 A Model for scheduling QCs
-Model Statistics    SOLVE QCSP Using MINLP From line 124
+Model Statistics    SOLVE QCSP Using MINLP From line 127
 
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS          13     SINGLE EQUATIONS        5,116
-BLOCKS OF VARIABLES           7     SINGLE VARIABLES        2,400
-NON ZERO ELEMENTS       150,100     NON LINEAR N-Z              0
+BLOCKS OF EQUATIONS          12     SINGLE EQUATIONS        3,379
+BLOCKS OF VARIABLES           6     SINGLE VARIABLES        1,468
+NON ZERO ELEMENTS        36,816     NON LINEAR N-Z              0
 CODE LENGTH                   0     CONSTANT POOL              16     
-DISCRETE VARIABLES      2,373
+DISCRETE VARIABLES      1,445
 
 
-GENERATION TIME      =        0.099 SECONDS     16 MB  49.6.1 55d34574 LEX-LEG
-GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 3
+GENERATION TIME      =        0.029 SECONDS      7 MB  49.6.1 55d34574 LEX-LEG
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/26/25 09:22:14 Page 4
 A Model for scheduling QCs
-Solution Report     SOLVE QCSP Using MINLP From line 124
+Solution Report     SOLVE QCSP Using MINLP From line 127
 
 
                S O L V E      S U M M A R Y
 
      MODEL   QCSP                OBJECTIVE  objFunc
      TYPE    MINLP               DIRECTION  MINIMIZE
-     SOLVER  DICOPT              FROM LINE  124
+     SOLVER  DICOPT              FROM LINE  127
 
 **** SOLVER STATUS     1 Normal Completion
 **** MODEL STATUS      19 Infeasible - No Solution
 **** OBJECTIVE VALUE               NA
 
- RESOURCE USAGE, LIMIT          0.037 10000000000.000
+ RESOURCE USAGE, LIMIT          0.007 10000000000.000
  ITERATION COUNT, LIMIT         0    2147483647
  EVALUATION ERRORS             NA             0
 -------------------------------------------------------------------------------
@@ -101,15 +151,15 @@ Parallel mode: none, using 72 threads in linear algebra
 Calling CBC main solution routine...
 
 Model infeasible.
-Best possible:  -1.476267e+03
+Best possible:  -7.982306e+03
 
 No solution returned
-GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/25/25 18:21:39 Page 4
+GAMS 49.6.1  55d34574 May 28, 2025          LEX-LEG x86 64bit/Linux - 08/26/25 09:22:14 Page 5
 A Model for scheduling QCs
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.206 SECONDS     16 MB  49.6.1 55d34574 LEX-LEG
+EXECUTION TIME       =        0.069 SECONDS      7 MB  49.6.1 55d34574 LEX-LEG
 
 
 USER: NEOS Server License prod-exec-6.neos-server.orgS241211/0001AB-GEN

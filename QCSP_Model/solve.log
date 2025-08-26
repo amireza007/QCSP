@@ -1,16 +1,16 @@
---- Job MODEL.gms Start 08/25/25 18:21:39 49.6.1 55d34574 LEX-LEG x86 64bit/Linux
+--- Job MODEL.gms Start 08/26/25 09:22:14 49.6.1 55d34574 LEX-LEG x86 64bit/Linux
 --- Applying:
 --- GAMS Parameters defined
-    Restart /var/lib/condor/execute/dir_464189/gamsexec/restart.g00
-    Input /var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms
-    Output /var/lib/condor/execute/dir_464189/gamsexec/solve.lst
+    Restart /var/lib/condor/execute/dir_622694/gamsexec/restart.g00
+    Input /var/lib/condor/execute/dir_622694/gamsexec/MODEL.gms
+    Output /var/lib/condor/execute/dir_622694/gamsexec/solve.lst
     PageWidth 79
     PageSize 0
-    ScrDir /var/lib/condor/execute/dir_464189/neos-464191/
+    ScrDir /var/lib/condor/execute/dir_622694/neos-622696/
     SysDir /opt/gams/49.6.1/
-    CurDir /var/lib/condor/execute/dir_464189/gamsexec/
+    CurDir /var/lib/condor/execute/dir_622694/gamsexec/
     LogOption 4
-    LogFile /var/lib/condor/execute/dir_464189/gamsexec/solve.log
+    LogFile /var/lib/condor/execute/dir_622694/gamsexec/solve.log
     AppendOut 1
     AppendLog 0
     Suppress 0
@@ -20,7 +20,7 @@
     LimRow 0
     LimCol 0
     IDE 1
-    GDX /var/lib/condor/execute/dir_464189/gamsexec/out.gdx
+    GDX /var/lib/condor/execute/dir_622694/gamsexec/out.gdx
     ExecMode 3
     gdxCompress 1
     Solver cbc
@@ -34,20 +34,20 @@ System information: 36 physical cores and 503 Gb memory detected
 GAMS 49.6.1   Copyright (C) 1987-2025 GAMS Development. All rights reserved
 --- Starting continued compilation
 --- Workfile was generated under GAMS version WEX490-490
---- MODEL.gms(4) 3 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",4,0]
+--- MODEL.gms(4) 3 Mb[FIL:"/var/lib/condor/execute/dir_622694/gamsexec/MODEL.gms",4,0]
 --- Starting execution: elapsed 0:00:00.002[LST:5]
---- MODEL.gms(67) 4 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",67,0]
---- Generating MINLP model QCSP[LST:5]
---- MODEL.gms(124) 18 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",124,0]
----   5,116 rows  2,400 columns  150,100 non-zeroes
+--- MODEL.gms(70) 4 Mb[FIL:"/var/lib/condor/execute/dir_622694/gamsexec/MODEL.gms",70,0]
+--- Generating MINLP model QCSP[LST:55]
+--- MODEL.gms(127) 9 Mb[FIL:"/var/lib/condor/execute/dir_622694/gamsexec/MODEL.gms",127,0]
+---   3,379 rows  1,468 columns  36,816 non-zeroes
 ---   0 nl-code  0 nl-non-zeroes
----   2,373 discrete-columns
+---   1,445 discrete-columns
 --- Range statistics (absolute non-zero finite values)
 --- RHS       [min, max] : [ 1.000E+00, 1.000E+14] - Zero values observed as well
 --- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
 --- Matrix    [min, max] : [ 1.000E+00, 2.000E+14]
---- MODEL.gms(124) 16 Mb[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/MODEL.gms",124,0]
---- Executing DICOPT (Solvelink=2): elapsed 0:00:00.101[LST:19]
+--- MODEL.gms(127) 7 Mb[FIL:"/var/lib/condor/execute/dir_622694/gamsexec/MODEL.gms",127,0]
+--- Executing DICOPT (Solvelink=2): elapsed 0:00:00.031[LST:69]
 -------------------------------------------------------------------------------
 Dicopt 2         49.6.1 55d34574 May 28, 2025          LEG x86 64bit/Linux    
 -------------------------------------------------------------------------------
@@ -68,9 +68,9 @@ Parallel mode: none, using 72 threads in linear algebra
 Calling CBC main solution routine...
 
 Model infeasible.
-Best possible:  -1.476267e+03
---- Reading solution for model QCSP[LST:31]
---- Executing after solve: elapsed 0:00:00.208[LST:72]
---- GDX File /var/lib/condor/execute/dir_464189/gamsexec/out.gdx[FIL:"/var/lib/condor/execute/dir_464189/gamsexec/out.gdx",0,0]
-*** Status: Normal completion[LST:89]
---- Job MODEL.gms Stop 08/25/25 18:21:40 elapsed 0:00:00.209
+Best possible:  -7.982306e+03
+--- Reading solution for model QCSP[LST:81]
+--- Executing after solve: elapsed 0:00:00.071[LST:122]
+--- GDX File /var/lib/condor/execute/dir_622694/gamsexec/out.gdx[FIL:"/var/lib/condor/execute/dir_622694/gamsexec/out.gdx",0,0]
+*** Status: Normal completion[LST:139]
+--- Job MODEL.gms Stop 08/26/25 09:22:14 elapsed 0:00:00.072

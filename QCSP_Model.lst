@@ -1,4 +1,4 @@
-GAMS 50.4.0  c55df396 Aug 12, 2025          WEX-WEI x86 64bit/MS Windows - 08/26/25 02:51:37 Page 1
+GAMS 50.4.0  c55df396 Aug 12, 2025          WEX-WEI x86 64bit/MS Windows - 08/26/25 17:51:53 Page 1
 A Model for scheduling QCs
 C o m p i l a t i o n
 
@@ -11,127 +11,130 @@ C o m p i l a t i o n
    8  ;
    9   
   10  Sets
-  11      i "index of tasks" /0*20/
+  11      i "index of tasks" /0*16/
   12      dummy "final position index" /'0',T/
   13      k "index of QCs" /1*4/
   14   
-  15      psi(i,i) "set of pairs (i,j) that can't performed simultaneously" / 1.(2*15),
-  16                                                                          2.(3*15),
-  17                                                                          3.(4*15)
-  18                                                                          4.(5*15),
-  19                                                                          5.(6*15),
-  20                                                                          6.(7*15),
-  21                                                                          7.(8*15),
-  22                                                                          8.(9*15),
-  23                                                                          9.(10*15),
-  24                                                                          10.(11*15),
-  25                                                                          11.(12*15)
-  26                                                                          12.(14*15),
-  27                                                                          13.(14*15),
-  28                                                                          14.15/
-  29      phi(i,i) "precedence relation of two tasks" /12.13/
-  30      YS(*) "set of QC locations" /1*20/
-  31   
-  32  ;
-  33   
+  15      Omega(i,i) "set of all ACCEPTABLE tasks"
+  16      psi(i,i) "set of pairs (i,j) that can't performed simultaneously" / 1.(2*15),
+  17                                                                          2.(3*15),
+  18                                                                          3.(4*15)
+  19                                                                          4.(5*15),
+  20                                                                          5.(6*15),
+  21                                                                          6.(7*15),
+  22                                                                          7.(8*15),
+  23                                                                          8.(9*15),
+  24                                                                          9.(10*15),
+  25                                                                          10.(11*15),
+  26                                                                          11.(12*15)
+  27                                                                          12.(14*15),
+  28                                                                          13.(14*15),
+  29                                                                          14.15/
+  30      phi(i,i) "precedence relation of two tasks" /12.13/
+  31      YS(*) "set of QC locations" /1*20/
+  32   
+  33  ;
   34  alias(i,j);
-  35  alias(v,k);
-  36  alias(u,i);
-  37   
-  38  Parameters
-  39      p(i)
-  40      r(k)
-  41      l(i) "location of task i" / 1 1,
-  42                                  2 2,
-  43                                  3 4,
-  44                                  4 4,
-  45                                  5 6,
-  46                                  6 11,
-  47                                  7 12,
-  48                                  8 13,
-  49                                  9 14,
-  50                                  10 15,
-  51                                  11 16,
-  52                                  12 18,
-  53                                  13 18,
-  54                                  14 19,
-  55                                  15 20 /
-  56   
-  57      l0(k) "starting location of QC k" /1 1, 2 3, 3 5, 4 7/
-  58      lT(k) "final position of QC k" /1 1, 2 3, 3 5, 4 7/ !!I just assusmed that QCs return to their initial position after their last jobs
-  59      t(i,j) "Travel time of a QC from locationn li of task i to location lj of task j."
-  60      t_d(dummy,i,k)
-  61  ;
-  62   
-  63  t(i,j) = abs(l(i)-l(j));
-  64  p(i) = uniform(60,90);
-  65  r(k) = 0;
-  66  t_d('T',i,k) =abs(l(i) - lt(k));
-  67  t_d('0',i,k) = abs(l(i) - l0(k));
-  68   
-  69  Binary Variables
-  70      X(i,j,k)    "1, if QC k performs task j IMMeDIATELY after performing i"
-  71      Z(i,j)      "1, if task j starts later than the completion time of task i;"
-  72      X_d(dummy, i ,k)
-  73  ;
-  74   
-  75  Positive Variables
-  76      Y(k) "completion time of QC k"
-  77      D(i) "completion time of task i"
-  78      W "time at which all tasks are completed"
-  79  ;
-  80  variable objFunc;
-  81   
-  82  Equations
-  83      obj, c1(k), c2(k)
-  84      ,c3(k)
-  85      ,c4(j)
-  86      ,c5(i,k)
-  87      ,c6(i,j,k)
-  88      ,c7(i,j)
-  89      ,c8(i,j)
-  90      ,c9(i,j)
-  91      ,c10(i,j,k)
-  92      ,c11(j,k)
-  93      ,c12(j,k)
-  94  ;
-  95   
-  96  obj.. objFunc =e= a1*W + a2*sum(k,Y(k));
-  97   
-  98  c1(k).. Y(k) =l= W;
-  99   
- 100  c2(k).. sum(j,x_d('0',j,k)) =e=1;
- 101   
- 102  c3(k).. sum(i,x_d('T',i,k)) =e= 1;
- 103   
- 104  c4(j).. sum((k,i)$(j.val <> i.val), x(i,j,k))  =e= 1;
- 105   
- 106  c5(i,k).. sum(j $(j.val <> i.val),x(i,j,k)) - sum(j$(j.val <> i.val),x(j,i,k)) =e= 0;
- 107   
- 108  c6(i,j,k).. D(i) + t(i,j) + p(j) - D(j) $(j.val <> i.val) =l= M*(1- x(i,j,k));
- 109   
- 110  c7(i,j)..D(i) + p(j) $(phi(i,j) and (j.val <> i.val))  =l= D(j);
- 111   
- 112  c8(i,j).. D(i) - D(j) + p(j)$(j.val <> i.val)  =l= M*(1-z(i,j));
- 113   
- 114  c9(i,j).. Z(i,j) + z(j,i) $(psi(i,j)and (j.val <> i.val)) =e= 1;
- 115   
- 116  c10(i,j,k).. sum((v,u)$(v.val <= k.val), x(u,j,v)) -sum((v,u)$(v.val <= k.val), x(u,i,v)) $(j.val <> i.val and l(i)<l(j))  =l= M*(z(i,j) + z(j,i));
- 117   
- 118  c11(j,k).. D(j) + t_d('T',j,k) - Y(k) =l= M*(1 - x_d('T',j,k));
- 119   
- 120  c12(j,k).. r(k) - d(j) + t_d('0',j,k) + p(j) =l= M*(1-x_d('0',j,k));
- 121   
+  35  omega(i,j) $(i.val < j.val) = YES;
+  36  omega('0','16') =NO;
+  37  display omega;
+  38  alias(v,k);
+  39  alias(u,i);
+  40   
+  41  Parameters
+  42      p(i)
+  43      r(k)
+  44      l(i) "location of task i" / 1 1,
+  45                                  2 2,
+  46                                  3 4,
+  47                                  4 4,
+  48                                  5 6,
+  49                                  6 11,
+  50                                  7 12,
+  51                                  8 13,
+  52                                  9 14,
+  53                                  10 15,
+  54                                  11 16,
+  55                                  12 18,
+  56                                  13 18,
+  57                                  14 19,
+  58                                  15 20 /
+  59   
+  60      l0(k) "starting location of QC k" /1 1, 2 3, 3 5, 4 7/
+  61      lT(k) "final position of QC k" /1 1, 2 3, 3 5, 4 7/ !!I just assusmed that QCs return to their initial position after their last jobs
+  62      t(i,j) "Travel time of a QC from locationn li of task i to location lj of task j."
+  63      t_d(dummy,i,k)
+  64  ;
+  65   
+  66  t(i,j) $(i.val < j.val and j.val <> 16) = l(j)-l(i);
+  67  p(i) = uniform(60,90);
+  68  r(k) = 0;
+  69  t_d('T',i,k) =abs(l(i) - lt(k));
+  70  t_d('0',i,k) = abs(l(i) - l0(k));
+  71   
+  72  Binary Variables
+  73      X(i,j,k)    "1, if QC k performs task j IMMeDIATELY after performing i"
+  74      Z(i,j)      "1, if task j starts later than the completion time of task i;"
+  75      X_d(dummy, i ,k)
+  76  ;
+  77   
+  78  Positive Variables
+  79      Y(k) "completion time of QC k"
+  80      D(i) "completion time of task i"
+  81      W "time at which all tasks are completed"
+  82  ;
+  83  variable objFunc;
+  84   
+  85  Equations
+  86      obj, c1(k), c2(k)
+  87      ,c3(k)
+  88  *    ,c4(j)
+  89      ,c5(i,k)
+  90      ,c6(i,j,k)
+  91      ,c7(i,j)
+  92      ,c8(i,j)
+  93      ,c9(i,j)
+  94      ,c10(i,j,k)
+  95      ,c11(j,k)
+  96      ,c12(j,k)
+  97  ;
+  98  *$(i.val<j.val and ( (i.val=0 and 0<j.val and j.val<16) or (0<i.val and i.val<16 and 0<j.val and j.val <16) or (0<i.val and i.val<16 and j.val = 16) ))
+  99  obj.. objFunc =e= a1*W + a2*sum(k,Y(k));
+ 100   
+ 101  c1(k).. Y(k) =l= W;
+ 102   
+ 103  c2(k).. sum(j $(0<j.val and j.val<16),x('0',j,k)) =e=1;
+ 104   
+ 105  c3(k).. sum(i $(0<i.val and i.val<16),x(i ,'16',k)) =e= 1;
+ 106  *dirty way!
+ 107  *c4(j).. sum((i,k) $(omega(i,j)), x(i,j,k))  =e= 1;
+ 108   
+ 109  c5(i,k).. sum(j $(omega(i,j)) ,x(i,j,k)) - sum(j $(omega(j,i)),x(j,i,k)) =e= 0;
+ 110   
+ 111  c6(i,j,k).. D(i) + t(i,j) + p(j) - D(j) $(j.val > i.val) =l= M*(1- x(i,j,k));
+ 112   
+ 113  c7(i,j)..D(i) + p(j) $(phi(i,j) and (j.val > i.val))  =l= D(j);
+ 114   
+ 115  c8(i,j).. D(i) - D(j) + p(j)$(omega(i,j))  =l= M*(1 - z(i,j));!!special cases overlooked!
+ 116   
+ 117  c9(i,j).. Z(i,j) + z(j,i) $(psi(i,j)and (j.val > i.val)) =e= 1;
+ 118   
+ 119  c10(i,j,k).. sum((v,u)$(v.val <= k.val and omega(u,j)), x(u,j,v)) -sum((v,u)$(v.val <= k.val and omega(u,i)), x(u,i,v)) $(omega(i,j) and l(i)<l(j))  =l= M*(z(i,j) + z(j,i));
+ 120   
+ 121  c11(j,k).. D(j) + t_d('T',j,k) - Y(k) $(omega(j,'16')) =l= M*(1 - x(j,'16',k));
  122   
- 123  Model QCSP /all/;
- 124  solve QCSP using MINLP min objFunc;
+ 123  c12(j,k).. r(k) - d(j) + t_d('0',j,k) + p(j) $(omega('0',j)) =l= M*(1 - x('0',j,k));
+ 124   
  125   
- 126   
- 127   
+ 126  Model QCSP /all/;
+ 127  solve QCSP using MINLP min objFunc;
  128   
  129   
  130   
  131   
+ 132   
+ 133   
+ 134   
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  50.4.0 c55df396 WEX-WEI
